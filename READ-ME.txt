@@ -1,0 +1,14 @@
+Roadside Assistance Service Locator (Momech Auto Services)
+This project is a web application designed to help drivers find nearby mechanics when their vehicles break down. It utilizes Google Maps API to display a map with markers representing the locations of various mechanics.
+
+- Features
+Displays a map centered at Accra, Ghana, with markers for several mechanic locations.
+Each marker is clickable and displays the name of the mechanic.
+The user can click on a marker to view more information about the mechanic.
+Mobile responsive design for easy access on various devices.
+
+- Prerequisites
+Web browser (Chrome, Firefox, Safari, etc.)
+Internet connection
+
+
