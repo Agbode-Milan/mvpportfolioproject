@@ -1,7 +1,10 @@
+from flask_bcrypt import Bcrypt
 import bcrypt
 from datetime import datetime
 from flask_login import UserMixin
 from app import db, login_manager
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -11,19 +14,18 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(64), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    role = db.Column(db.String(20), nullable=False)  # selects mechanic or driver
+    role = db.Column(db.String(20), nullable=False)  # selects mechaanic or driver
     registered_on = db.Column(db.DateTime, nullable=False, default=datetime.now)
     feedbacks = db.relationship('Feedback', backref='author', lazy=True)
 
     def set_password(self, password):
-        self.password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
 
     def check_password(self, password):
-        return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
+        return bcrypt.check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.role}')"
-
 
 class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -37,7 +39,6 @@ class Feedback(db.Model):
     def __repr__(self):
         return f"Feedback('{self.name}', '{self.email}', '{self.rating}', '{self.date_submitted}')"
 
-
 class Mechanic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -50,7 +51,6 @@ class Mechanic(db.Model):
 
     def __repr__(self):
         return f"Mechanic('{self.user_id}', '{self.expertise}')"
-
 
 class Driver(db.Model):
     id = db.Column(db.Integer, primary_key=True)
