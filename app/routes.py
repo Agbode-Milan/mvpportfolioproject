@@ -1,5 +1,6 @@
 """Module that contains the routes"""
-
+import getpass
+import smtplib, ssl
 import bcrypt
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
@@ -23,9 +24,45 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password_hash=hashed_password, role=form.role.data)
         db.session.add(user)
         db.session.commit()
+
+        send_email(user.email) #function that sends confirmation male to new users
+
         flash('Your account has been created! You can Login Now', 'success')
         return redirect(url_for('main.login'))
     return render_template('register.html', title='Register', form=form)
+
+
+def send_email(reciever_mail):
+    """Script that enables sending of email"""
+    port = 465  # For SSL
+    smtp_server = "smtp.gmail.com"
+    sender_email = "testgheebee@gmail.com"  # Enter your address
+    receiver_email = "sobowalegz2@gmail.com"  # Enter receiver address
+    #password = getpass.getpass("Type your password and press enter: ")
+    password = "vudj vaqu wbfn biaw"  #this is the passoword i used to test the code. it can be replaced with the company credentials.
+    subject = "Welcome to Momech Auto Services"
+    body = "Thanks for registering with Momech \n If you encounter issue, reach out to us."
+
+    message = f"""\
+    Subject: {subject}
+
+    {body}
+    """
+
+    context = ssl.create_default_context()
+    try:
+        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message)
+        print("Email sent successfully!")
+
+    except Exception as e:
+        print(f"Failed to send mail: {e}")
+        
+
+
+
+
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():
@@ -71,3 +108,6 @@ def service_request():
         flash('Your service request has been submitted.', 'success')
         return redirect(url_for('main.home'))
     return render_template('service_request.html', title='Service Request', form=form)
+
+
+#function that enables user to send recieve email notification.
