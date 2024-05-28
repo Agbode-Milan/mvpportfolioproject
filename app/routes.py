@@ -6,13 +6,14 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
 from app.models import User, Feedback, Mechanic, Driver
-from app.forms import RegistrationForm, LoginForm, FeedbackForm, ServiceRequestForm
+from app.forms import RegistrationForm, FeedbackForm, ServiceRequestForm
+from app.forms import Login
 
 main = Blueprint('main', __name__)
 
 @main.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @main.route('/register', methods=['GET', 'POST'])
 def register():
