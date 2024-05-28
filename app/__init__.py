@@ -11,6 +11,9 @@ def create_app(config_class='config.Config'):
     app = Flask(__name__)
     app.config.from_object(config_class)
 
+    # Set the secret key
+    app.config['SECRET_KEY'] = 'e76cf24ec93fa449c1c6822ceba1113d'
+
     db.init_app(app)
     login_manager.init_app(app)
     bcrypt.init_app(app)

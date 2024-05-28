@@ -24,7 +24,8 @@
     <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Stylesheet -->
-    <link href="static/css/style.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 
 <body>
@@ -34,7 +35,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-4 col-md-12">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{ url_for('main.home') }}">
                             <h1>Momech<span>Auto</span></h1>
 
                         </a>
@@ -93,15 +94,17 @@
 
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
-                        <a href="index.html" class="nav-item nav-link active"><b>Home</b></a>
-                        <a href="about.html" class="nav-item nav-link"><b>About</b></a>
-                        <a href="service.html" class="nav-item nav-link"><strong>Service</strong></a>
-
-                        <a href="location.html" class="nav-item nav-link"><strong>Service Points</strong></a>
-                        <a href="contact.html" class="nav-item nav-link"><strong>Contact</strong></a>
-                        <a href="login_form.html" class="nav-item nav-link"><strong>Login</strong></a>
-                        <a href="registration_form.html" class="nav-item nav-link"><strong>Create an
+                        <a href="{{ url_for('main.home') }}" class="nav-item nav-link active"><b>Home</b></a>
+                        <a href="{{ url_for('main.about') }}" class="nav-item nav-link"><b>About</b></a>
+                        <a href="{{ url_for('main.service') }}" class="nav-item nav-link"><strong>Service</strong></a>
+                        <a href="{{ url_for('main.location') }}" class="nav-item nav-link"><strong>Service
+                                Points</strong></a>
+                        <a href="{{ url_for('main.contact') }}" class="nav-item nav-link"><strong>Contact</strong></a>
+                        <a href="{{ url_for('main.login') }}" class="nav-item nav-link"><strong>Login</strong></a>
+                        <a href="{{ url_for('main.register') }}" class="nav-item nav-link"><strong>Create an
                                 Account</strong></a>
+
+
                     </div>
                 </div>
             </nav>
@@ -116,7 +119,8 @@
             <div class="owl-carousel">
                 <div class="carousel-item">
                     <div class="carousel-img">
-                        <img src="/static/img\engine-1.jpg" alt="Image">
+                        <img src="{{ url_for('static', filename='img/engine-1.jpg') }}" alt="Engine 1">
+
                     </div>
                     <div class="carousel-text">
                         <h3>CAR MAINTENANCE SERVICES</h3>
@@ -128,7 +132,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-img">
-                        <img src="/static/img\engine-2.jpg" alt="Image">
+                        <img src="{{ url_for('static', filename='/img\engine-2.jpg') }}" alt="Image">
                     </div>
                     <div class="carousel-text">
                         <h3>Car Maintenance Services</h3>
@@ -139,7 +143,7 @@
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-img">
-                        <img src="/static/img\engine-3.jpg" alt="Image">
+                        <img src="{{ url_for('static', filename='/img\engine-3.jpg') }}" alt="Image">
                     </div>
                     <div class="carousel-text">
                         <h3>Car Maintenance Services</h3>

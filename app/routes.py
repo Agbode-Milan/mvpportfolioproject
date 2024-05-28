@@ -30,7 +30,7 @@ def register():
 
         flash('Your account has been created! You can Login Now', 'success')
         return redirect(url_for('main.login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('registration_form.html', title='Register', form=form)
 
 
 def send_email(reciever_mail):
@@ -69,7 +69,7 @@ def send_email(reciever_mail):
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
-    form = LoginForm()
+    form = Login()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.checkpw(form.password.data.encode('utf-8'), user.password_hash.encode('utf-8')):
@@ -78,7 +78,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('main.home'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login_form.html', title='Login', form=form)
 
 @main.route('/logout')
 def logout():
@@ -111,4 +111,19 @@ def service_request():
     return render_template('service_request.html', title='Service Request', form=form)
 
 
+@main.route('/about')
+def about():
+    return render_template('about.html')
+
+@main.route('/service')
+def service():
+    return render_template('service.html')
+
+@main.route('/location')
+def location():
+    return render_template('location.html')
+
+@main.route('/contact')
+def contact():
+    return render_template('contact.html')
 #function that enables user to send recieve email notification.
