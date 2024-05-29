@@ -33,7 +33,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-4 col-md-12">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{ url_for('main.home') }}">
                             <h1>Momech<span>Auto</span></h1>
 
                         </a>
@@ -92,15 +92,16 @@
 
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
-                        <a href="index.html" class="nav-item nav-link"><strong>Home</strong></a>
-                        <a href="about.html" class="nav-item nav-link"><strong>About</strong></a>
-                        <a href="service.html" class="nav-item nav-link"><strong>Service</strong></a>
-                        <a href="location.html" class="nav-item nav-link"><strong>Service Points</strong></a>
-                        <a href="contact.html" class="nav-item nav-link active"><strong>Contact</strong></a>
-                        <a href="login_form.html" class="nav-item nav-link"><strong>Login</strong></a>
-                        <a href="registration_form.html" class="nav-item nav-link"><strong>Create an
-                                Account</strong></a>
-                    </div>
+                        <a href="{{ url_for('main.home') }}" class="nav-item nav-link"><strong>Home</strong></a>
+                        <a href="{{ url_for('main.about') }}"
+                            class="nav-item nav-link active"><strong>About</strong></a>
+                        <a href="{{ url_for('main.service') }}" class="nav-item nav-link"><strong>Service</strong></a>
+                        <a href="{{ url_for('main.location') }}" class="nav-item nav-link"><strong>Service
+                                Points</strong></a>
+                        <a href="{{ url_for('main.contact') }}" class="nav-item nav-link"><strong>Contact</strong></a>
+                        <a href="{{ url_for('main.login') }}" class="nav-item nav-link"><strong>Login</strong></a>
+                        <a href="{{ url_for('main.register') }}" class="nav-item nav-link"><strong>Create an
+                                Account</strong></a>                    </div>
                 </div>
             </nav>
         </div>
@@ -271,10 +272,10 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-link">
                         <h2>Links</h2>
-                        <a href="about.html">About Us</a>
-                        <a href="contact.html">Contact Us</a>
-                        <a href="Service.html">Our Service</a>
-                        <a href="location.html">Service Points</a>
+                        <a href="{{ url_for('main.about') }}">About Us</a>
+                        <a href="{{ url_for('main.contact') }}">Contact Us</a>
+                        <a href="{{ url_for('main.service') }}">Our Service</a>
+                        <a href="{{ url_for('main.location') }}">Service Points</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
