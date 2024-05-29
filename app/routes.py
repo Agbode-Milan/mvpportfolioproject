@@ -75,10 +75,11 @@ def login():
         if user and bcrypt.checkpw(form.password.data.encode('utf-8'), user.password_hash.encode('utf-8')):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home'))
+            return redirect(next_page) if next_page else redirect(url_for('main.account'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login_form.html', title='Login', form=form)
+
 
 @main.route('/logout')
 def logout():
@@ -127,3 +128,28 @@ def location():
 def contact():
     return render_template('contact.html')
 #function that enables user to send recieve email notification.
+
+def account():
+    service_form = ServiceRequestForm()
+    if service_form.validate_on_submit():
+        service_request = ServiceRequestForm(
+            user_id=current_user.id,
+            service_type=service_form.service_type.data,
+            description=service_form.description.data,
+            location=service_form.location.data
+        )
+        db.session.add(service_request)
+        db.session.commit()
+        flash('Service request submitted!', 'success')
+        return redirect(url_for('main.account'))
+
+    service_requests = ServiceRequestForm.query.filter_by(user_id=current_user.id).all()
+    feedbacks = Feedback.query.filter_by(user_id=current_user.id).all()
+
+    return render_template(
+        'account.html', 
+        title='Account Dashboard', 
+        service_form=service_form, 
+        service_requests=service_requests,
+        feedbacks=feedbacks
+    )
