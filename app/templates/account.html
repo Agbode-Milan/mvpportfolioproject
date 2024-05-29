@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="mt-4">Account Dashboard</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="{{ url_for('static', filename='uploads/' + current_user.image_file) }}"
+                    class="img-fluid rounded-circle" alt="Profile Picture">
+                <h3>{{ current_user.firstname }} {{ current_user.lastname }}</h3>
+                <p>{{ current_user.email }}</p>
+            </div>
+            <div class="col-md-8">
+                <h2>Service Requests</h2>
+                <ul class="list-group">
+                    {% for request in service_requests %}
+                    <li class="list-group-item">
+                        <strong>{{ request.service_type }}</strong>: {{ request.description }}<br>
+                        <em>{{ request.location }}</em>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <h2 class="mt-4">Feedback</h2>
+                <ul class="list-group">
+                    {% for feedback in feedbacks %}
+                    <li class="list-group-item">
+                        <strong>{{ feedback.name }}</strong> ({{ feedback.rating }}/5)<br>
+                        {{ feedback.comments }}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <h2 class="mt-4">Request a Service</h2>
+                <form method="POST" action="{{ url_for('account') }}">
+                    {{ service_form.hidden_tag() }}
+                    <div class="form-group">
+                        {{ service_form.service_type.label(class="form-control-label") }}
+                        {{ service_form.service_type(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ service_form.description.label(class="form-control-label") }}
+                        {{ service_form.description(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        {{ service_form.location.label(class="form-control-label") }}
+                        {{ service_form.location(class="form-control") }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

@@ -6,7 +6,8 @@ from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
 from app.models import User, Feedback, Mechanic, Driver
-from app.forms import RegistrationForm, LoginForm, FeedbackForm, ServiceRequestForm
+from app.forms import RegistrationForm, FeedbackForm, ServiceRequestForm
+from app.forms import Login
 
 main = Blueprint('main', __name__)
 
@@ -29,7 +30,7 @@ def register():
 
         flash('Your account has been created! You can Login Now', 'success')
         return redirect(url_for('main.login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('registration_form.html', title='Register', form=form)
 
 
 def send_email(reciever_mail):
@@ -68,16 +69,17 @@ def send_email(reciever_mail):
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
-    form = LoginForm()
+    form = Login()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.checkpw(form.password.data.encode('utf-8'), user.password_hash.encode('utf-8')):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home'))
+            return redirect(next_page) if next_page else redirect(url_for('main.account'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login_form.html', title='Login', form=form)
+
 
 @main.route('/logout')
 def logout():
@@ -110,4 +112,44 @@ def service_request():
     return render_template('service_request.html', title='Service Request', form=form)
 
 
+@main.route('/about')
+def about():
+    return render_template('about.html')
+
+@main.route('/service')
+def service():
+    return render_template('service.html')
+
+@main.route('/location')
+def location():
+    return render_template('location.html')
+
+@main.route('/contact')
+def contact():
+    return render_template('contact.html')
 #function that enables user to send recieve email notification.
+
+def account():
+    service_form = ServiceRequestForm()
+    if service_form.validate_on_submit():
+        service_request = ServiceRequestForm(
+            user_id=current_user.id,
+            service_type=service_form.service_type.data,
+            description=service_form.description.data,
+            location=service_form.location.data
+        )
+        db.session.add(service_request)
+        db.session.commit()
+        flash('Service request submitted!', 'success')
+        return redirect(url_for('main.account'))
+
+    service_requests = ServiceRequestForm.query.filter_by(user_id=current_user.id).all()
+    feedbacks = Feedback.query.filter_by(user_id=current_user.id).all()
+
+    return render_template(
+        'account.html', 
+        title='Account Dashboard', 
+        service_form=service_form, 
+        service_requests=service_requests,
+        feedbacks=feedbacks
+    )

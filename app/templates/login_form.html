@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Momech Auto Services - Login</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free Website Template" name="keywords">
+    <meta content="Free Website Template" name="description">
+    <link href="/static/img/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="/static/lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="/static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+    <!-- Top Bar Start -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-12">
+                    <div class="logo">
+                        <a href="{{ url_for('main.home') }}">
+                            <h1>Momech<span>Auto</span></h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Opening Hours</h3>
+                                    <p>Mon - Fri, 8:00 - 9:00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="fa fa-phone-alt"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Call Us</h3>
+                                    <p>+233 509 914 728</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Email Us</h3>
+                                    <p>momechautoservices@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Top Bar End -->
+
+    <!-- Nav Bar Start -->
+    <div class="nav-bar">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                <a href="#" class="navbar-brand">MENU</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="{{ url_for('main.home') }}" class="nav-item nav-link"><strong>Home</strong></a>
+                        <a href="{{ url_for('main.about') }}"
+                            class="nav-item nav-link active"><strong>About</strong></a>
+                        <a href="{{ url_for('main.service') }}" class="nav-item nav-link"><strong>Service</strong></a>
+                        <a href="{{ url_for('main.location') }}" class="nav-item nav-link"><strong>Service
+                                Points</strong></a>
+                        <a href="{{ url_for('main.contact') }}" class="nav-item nav-link"><strong>Contact</strong></a>
+                        <a href="{{ url_for('main.login') }}" class="nav-item nav-link"><strong>Login</strong></a>
+                        <a href="{{ url_for('main.register') }}" class="nav-item nav-link"><strong>Create an
+                                Account</strong></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <!-- Login Form Start -->
+    <div class="service">
+        <div class="container">
+            <div class="section-header text-center">
+                <p>Welcome Back!</p>
+                <h2>Login</h2>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-8 col-md-10 col-sm-12">
+                    <div class="login-form p-4" style="border: 2px solid #000000; border-radius: 10px;">
+                        <h3 class="text-center mb-4">Login to Your Account</h3>
+                        <!-- Use Flask-WTF to render form -->
+                        <form method="POST" action="{{ url_for('main.login') }}">
+                            {{ form.hidden_tag() }}
+                            <div class="form-group mb-3">
+                                {{ form.email.label(class="form-control-label") }}
+                                {{ form.email(class="form-control", placeholder="Email") }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.password.label(class="form-control-label") }}
+                                {{ form.password(class="form-control", placeholder="Password") }}
+                            </div>
+                            <div class="form-group mb-3">
+                                <div class="form-check">
+                                    {{ form.remember(class="form-check-input") }}
+                                    {{ form.remember.label(class="form-check-label") }}
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                {{ form.submit(class="btn btn-custom") }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login Form End -->
+
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            padding: 15px;
+            font-size: 16px;
+        }
+
+        .btn-custom {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #000000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-form {
+            background-color: #f9f9f9;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .section-header h2 {
+            font-size: 30px;
+            margin-bottom: 40px;
+        }
+
+        .form-check-label {
+            margin-left: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-control {
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .btn-custom {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+
+            .section-header h2 {
+                font-size: 25px;
+            }
+
+            .section-header p {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .form-control {
+                font-size: 12px;
+                padding: 10px;
+            }
+
+            .btn-custom {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .section-header h2 {
+                font-size: 22px;
+            }
+
+            .section-header p {
+                font-size: 16px;
+            }
+        }
+    </style>
+
+    <!-- Footer Start -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-contact">
+                        <h2>Get In Touch</h2>
+                        <p><i class="fa fa-map-marker-alt"></i>Accra, Ghana</p>
+                        <p><i class="fa fa-phone-alt"></i>+233 509 914 728</p>
+                        <p><i class="fa fa-envelope"></i>momechautoservices@gmail.com</p>
+                        <div class="footer-social">
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href=""><i class="fab fa-facebook-f"></i></a>
+                            <a href=""><i class="fab fa-youtube"></i></a>
+                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-link">
+                        <h2>Quick Links</h2>
+                        <a href="{{ url_for('main.home') }}">Home</a>
+                        <a href="{{ url_for('main.about') }}">About Us</a>
+                        <a href="{{ url_for('main.service') }}">Our Services</a>
+                        <a href="{{ url_for('main.location') }}">Service Points</a>
+                        <a href="{{ url_for('main.contact') }}">Contact Us</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-newsletter">
+                        <h2>Newsletter</h2>
+                        <form>
+                            <input class="form-control" placeholder="Your Email">
+                            <button class="btn btn-custom">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/lib/easing/easing.min.js"></script>
+    <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/static/lib/waypoints/waypoints.min.js"></script>
+    <script src="/static/lib/counterup/counterup.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
+<style>
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .btn-custom {
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #000000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .login-form {
+        background-color: #f9f9f9;
+    }
+
+    .section-header p {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .section-header h2 {
+        font-size: 30px;
+        margin-bottom: 40px;
+    }
+
+    .form-check-label {
+        margin-left: 5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .form-control {
+            font-size: 14px;
+            padding: 12px;
+        }
+
+        .btn-custom {
+            font-size: 16px;
+            padding: 12px 25px;
+        }
+
+        .section-header h2 {
+            font-size: 25px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .form-control {
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        .btn-custom {
+            font-size: 14px;
+            padding: 10px 20px;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+        }
+
+        .section-header p {
+            font-size: 16px;
+        }
+    }
+</style>
+
+<!-- Footer Start -->
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-contact">
+                    <h2>Get In Touch</h2>
+                    <p><i class="fa fa-map-marker-alt"></i>Accra, Ghana</p>
+                    <p><i class="fa fa-phone-alt"></i>+233 509 914 728</p>
+                    <p><i class="fa fa-envelope"></i>momechautoservices@gmail.com</p>
+                    <div class="footer-social">
+                        <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-link">
+                    <a href="{{ url_for('main.about') }}">About Us</a>
+                    <a href="{{ url_for('main.contact') }}">Contact Us</a>
+                    <a href="{{ url_for('main.service') }}">Our Service</a>
+                    <a href="{{ url_for('main.location') }}">Service Points</a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+
+            </div>
+            <div class="col-lg-3 col-md-6">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer End -->
+
+<!-- Back to top button -->
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- Pre Loader -->
+<div id="loader" class="show">
+    <div class="loader"></div>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="/static/lib/easing/easing.min.js"></script>
+<script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/static/lib/waypoints/waypoints.min.js"></script>
+<script src="/static/lib/counterup/counterup.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="/mail/jqBootstrapValidation.min.js"></script>
+<script src="/mail/contact.js"></script>
+
+<!-- Javascript -->
+<script src="/static/js/main.js"></script>
+</body>
+
+</html>

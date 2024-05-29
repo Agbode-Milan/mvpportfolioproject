@@ -6,7 +6,8 @@ from flask_wtf import FlaskForm
 from wtforms.validators import (
         DataRequired, Length, Email, EqualTo, Regexp
         )
-from wtforms import SubmitField, StringField, PasswordField, BooleanField, TextAreaField, IntegerField, NumberRange
+from wtforms import SubmitField, StringField, PasswordField, BooleanField, TextAreaField, IntegerField
+from wtforms.validators import NumberRange
 
 
 class RegistrationForm(FlaskForm):
