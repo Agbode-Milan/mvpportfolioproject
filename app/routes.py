@@ -12,7 +12,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
 @main.route('/register', methods=['GET', 'POST'])
 def register():
