@@ -46,7 +46,7 @@ class FeedbackForm(FlaskForm):
     submit = SubmitField("Submit Feedback")
 
 class ServiceRequestForm(FlaskForm):
-    """Class that handles the service requests """
+    """Class that handles the service request """
     service_type = StringField('Service Type', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired()])
