@@ -30,7 +30,7 @@
                     </li>
                     {% endfor %}
                 </ul>
-
+ 
                 <h2 class="mt-4">Feedback</h2>
                 <ul class="list-group">
                     {% for feedback in feedbacks %}
@@ -42,7 +42,7 @@
                 </ul>
 
                 <h2 class="mt-4">Request a Service</h2>
-                <form method="POST" action="{{ url_for('account') }}">
+                <form method="POST" action="{{ url_for('main.account') }}">
                     {{ service_form.hidden_tag() }}
                     <div class="form-group">
                         {{ service_form.service_type.label(class="form-control-label") }}

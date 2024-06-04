@@ -6,27 +6,24 @@ from flask_wtf import FlaskForm
 from wtforms.validators import (
         DataRequired, Length, Email, EqualTo, Regexp
         )
-from wtforms import SubmitField, StringField, PasswordField, BooleanField, TextAreaField, IntegerField
+from wtforms import SubmitField, StringField, PasswordField, BooleanField, TextAreaField, IntegerField, FloatField, SelectField
 from wtforms.validators import NumberRange
 
 
 class RegistrationForm(FlaskForm):
     """Class that handles the registration task for new users"""
-    username = StringField(
-            "Username",
-            validators=[DataRequired(), Length(min=2, max=20)])
-    surname = StringField(
-        "Surname",
-        validators=[DataRequired(), Length(min=2, max=20)])
-    first_name = StringField(
-        "First Name",
-        validators=[DataRequired(), Length(min=2, max=20)])
+    username = StringField("Username", validators=[DataRequired(), Length(min=2, max=20)])
+    surname = StringField("Surname", validators=[DataRequired(), Length(min=2, max=20)])
+    first_name = StringField("First Name", validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField("Email", validators=[DataRequired(), Email()])
     phone = StringField("Phone Number", validators=[Regexp('^\+(?:[0-9] ?){6,14}[0-9]$')])
     password = PasswordField("Password", validators=[DataRequired()])
-    confirm_password = PasswordField(
-            "Confirm Password",
-            validators=[DataRequired(), EqualTo("password")])
+    confirm_password = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo("password")])
+    role = SelectField("Role", choices=[('driver', 'Driver'), ('mechanic', 'Mechanic')], validators=[DataRequired()])
+    vehicle_details = StringField("Vehicle Details")  #for drivers
+    location = StringField("Location")  # for mechanics
+    expertise = StringField("Expertise")  #for mechanics
+    service_rates = FloatField("Service Rates")  #for mechanics
     submit = SubmitField("Sign Up")
 
 

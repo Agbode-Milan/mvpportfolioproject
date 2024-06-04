@@ -5,7 +5,7 @@ import bcrypt
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
 from app import db
-from app.models import User, Feedback, Mechanic, Driver
+from app.models import User, Feedback, Mechanic, Driver, ServiceRequest
 from app.forms import RegistrationForm, FeedbackForm, ServiceRequestForm
 from app.forms import Login
 
@@ -26,12 +26,19 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        send_email(user.email) #function that sends confirmation male to new users
+        if form.role.data == 'driver':
+            driver = Driver(user_id=user.id, vehicle_details=form.vehicle_details.data)
+            db.session.add(driver)
+        elif form.role.data == 'mechanic':
+            mechanic = Mechanic(user_id=user.id, location=form.location.data, expertise=form.expertise.data, service_rates=form.service_rates.data)
+            db.session.add(mechanic)
+        db.session.commit()
+
+        send_email(user.email)  # Function that sends confirmation mail to new users
 
         flash('Your account has been created! You can Login Now', 'success')
         return redirect(url_for('main.login'))
     return render_template('registration_form.html', title='Register', form=form)
-
 
 def send_email(reciever_mail):
     """Script that enables sending of email"""
@@ -60,10 +67,6 @@ def send_email(reciever_mail):
     except Exception as e:
         print(f"Failed to send mail: {e}")
         
-
-
-
-
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():
@@ -127,12 +130,17 @@ def location():
 @main.route('/contact')
 def contact():
     return render_template('contact.html')
-#function that enables user to send recieve email notification.
 
+@main.route('/account', methods=['GET', 'POST'])
+@login_required
 def account():
+    if current_user.role != 'driver':
+        flash('Only drivers can request services.', 'danger')
+        return redirect(url_for('main.home'))
+
     service_form = ServiceRequestForm()
     if service_form.validate_on_submit():
-        service_request = ServiceRequestForm(
+        service_request = ServiceRequest(
             user_id=current_user.id,
             service_type=service_form.service_type.data,
             description=service_form.description.data,
@@ -143,7 +151,7 @@ def account():
         flash('Service request submitted!', 'success')
         return redirect(url_for('main.account'))
 
-    service_requests = ServiceRequestForm.query.filter_by(user_id=current_user.id).all()
+    service_requests = ServiceRequest.query.filter_by(user_id=current_user.id).all()
     feedbacks = Feedback.query.filter_by(user_id=current_user.id).all()
 
     return render_template(

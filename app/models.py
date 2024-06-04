@@ -61,3 +61,12 @@ class Driver(db.Model):
 
     def __repr__(self):
         return f"Driver('{self.user_id}', '{self.vehicle_details}')"
+
+class ServiceRequest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    service_type = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
+    location = db.Column(db.String(100), nullable=False)
+    timestamp = db.Column(db.DateTime, nullable=False, default=datetime.now)
+    user = db.relationship('User', back_populates='service_requests')

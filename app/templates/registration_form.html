@@ -5,28 +5,26 @@
     <meta charset="utf-8">
     <title>Momech Auto Services</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content=" Website " name="keywords">
-    <meta content=" Website " name="description">
+    <meta content="Website" name="keywords">
+    <meta content="Website" name="description">
 
     <!-- Favicon -->
-    <link href="app/static/img/favicon.ico" rel="icon">
+    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="/static/lib/flaticon/font/flaticon.css" rel="stylesheet">
-    <link href="static/static/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</head>
-
+    
     <style>
         .form-group {
             margin-bottom: 20px;
@@ -113,7 +111,6 @@
                     <div class="logo">
                         <a href="{{ url_for('main.home') }}">
                             <h1>Momech<span>Auto</span></h1>
-
                         </a>
                     </div>
                 </div>
@@ -171,15 +168,12 @@
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
                         <a href="{{ url_for('main.home') }}" class="nav-item nav-link"><strong>Home</strong></a>
-                        <a href="{{ url_for('main.about') }}"
-                            class="nav-item nav-link active"><strong>About</strong></a>
+                        <a href="{{ url_for('main.about') }}" class="nav-item nav-link active"><strong>About</strong></a>
                         <a href="{{ url_for('main.service') }}" class="nav-item nav-link"><strong>Service</strong></a>
-                        <a href="{{ url_for('main.location') }}" class="nav-item nav-link"><strong>Service
-                                Points</strong></a>
+                        <a href="{{ url_for('main.location') }}" class="nav-item nav-link"><strong>Service Points</strong></a>
                         <a href="{{ url_for('main.contact') }}" class="nav-item nav-link"><strong>Contact</strong></a>
                         <a href="{{ url_for('main.login') }}" class="nav-item nav-link"><strong>Login</strong></a>
-                        <a href="{{ url_for('main.register') }}" class="nav-item nav-link"><strong>Create an
-                                Account</strong></a>
+                        <a href="{{ url_for('main.register') }}" class="nav-item nav-link"><strong>Create an Account</strong></a>
                     </div>
                 </div>
             </nav>
@@ -198,29 +192,49 @@
                 <div class="col-lg-8 col-md-10 col-sm-12">
                     <div class="registration-form p-4" style="border: 2px solid #000000; border-radius: 10px;">
                         <h3 class="text-center mb-4">Sign Up</h3>
-                        <form>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Username" required="required" />
+                        <form method="POST" action="{{ url_for('main.register') }}">
+                            {{ form.hidden_tag() }}
+                            <div class="form-group">
+                                {{ form.username.label(class="form-control-label") }}
+                                {{ form.username(class="form-control") }}
                             </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Surname" required="required" />
+                            <div class="form-group">
+                                {{ form.surname.label(class="form-control-label") }}
+                                {{ form.surname(class="form-control") }}
                             </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="First Name" required="required" />
+                            <div class="form-group">
+                                {{ form.first_name.label(class="form-control-label") }}
+                                {{ form.first_name(class="form-control") }}
                             </div>
-                            <div class="form-group mb-3">
-                                <input type="email" class="form-control" placeholder="Email" required="required" />
+                            <div class="form-group">
+                                {{ form.email.label(class="form-control-label") }}
+                                {{ form.email(class="form-control") }}
                             </div>
-                            <div class="form-group mb-3">
-                                <input type="tel" class="form-control" placeholder="Phone" required="required" />
+                            <div class="form-group">
+                                {{ form.phone.label(class="form-control-label") }}
+                                {{ form.phone(class="form-control") }}
                             </div>
-                            <div class="form-group mb-3">
-                                <input type="password" class="form-control" placeholder="Password"
-                                    required="required" />
+                            <div class="form-group">
+                                {{ form.password.label(class="form-control-label") }}
+                                {{ form.password(class="form-control") }}
                             </div>
-                            <div class="form-group mb-4">
-                                <input type="password" class="form-control" placeholder="Confirm Password"
-                                    required="required" />
+                            <div class="form-group">
+                                {{ form.confirm_password.label(class="form-control-label") }}
+                                {{ form.confirm_password(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.role.label(class="form-control-label") }}
+                                {{ form.role(class="form-control", id="role-select") }}
+                            </div>
+                            <div class="form-group" id="driver-fields" style="display: none;">
+                                {{ form.vehicle_details.label(class="form-control-label") }}
+                                {{ form.vehicle_details(class="form-control") }}
+                            </div>
+                            <div class="form-group" id="mechanic-fields" style="display: none;">
+                                {{ form.location.label(class="form-control-label") }}
+                                {{ form.location(class="form-control") }}
+                                {{ form.expertise.label(class="form-control-label") }}
+                                {{ form.expertise(class="form-control") }}
                             </div>
                             <div class="text-center">
                                 <button class="btn btn-custom" type="submit">Sign Up</button>
@@ -232,7 +246,6 @@
         </div>
     </div>
     <!-- Form End -->
-
 
     <!-- Footer Start -->
     <div class="footer">
@@ -260,15 +273,12 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-
                 </div>
                 <div class="col-lg-3 col-md-6">
-
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Footer End -->
 
     <!-- Back to top button -->
@@ -282,17 +292,34 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/lib/easing/easing.min.js"></script>
-    <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="/static/lib/waypoints/waypoints.min.js"></script>
-    <script src="/static/lib/counterup/counterup.min.js"></script>
+    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"></script>
 
     <!-- Contact Javascript File -->
-    <script src="/mail/jqBootstrapValidation.min.js"></script>
-    <script src="/mail/contact.js"></script>
+    <script src="{{ url_for('static', filename='mail/jqBootstrapValidation.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='mail/contact.js') }}"></script>
 
     <!-- Javascript -->
-    <script src="/static/js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        document.getElementById('role-select').addEventListener('change', function () {
+            var role = this.value;
+            var driverFields = document.getElementById('driver-fields');
+            var mechanicFields = document.getElementById('mechanic-fields');
+            if (role === 'driver') {
+                driverFields.style.display = 'block';
+                mechanicFields.style.display = 'none';
+            } else if (role === 'mechanic') {
+                driverFields.style.display = 'none';
+                mechanicFields.style.display = 'block';
+            } else {
+                driverFields.style.display = 'none';
+                mechanicFields.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 </html>
