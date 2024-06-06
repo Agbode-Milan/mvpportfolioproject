@@ -9,14 +9,17 @@ from app import db, login_manager
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    role = db.Column(db.String(20), nullable=False)  # selects mechaanic or driver
+    role = db.Column(db.String(20), nullable=False)  # selects mechanic or driver
     registered_on = db.Column(db.DateTime, nullable=False, default=datetime.now)
     feedbacks = db.relationship('Feedback', backref='author', lazy=True)
+    mechanics = db.relationship('Mechanic', backref='user', lazy=True)
+    drivers = db.relationship('Driver', backref='user', lazy=True)
 
     def set_password(self, password):
         self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')
@@ -27,6 +30,7 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.role}')"
 
+
 class Feedback(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), nullable=False)
@@ -35,9 +39,12 @@ class Feedback(db.Model):
     comments = db.Column(db.Text, nullable=False)
     date_submitted = db.Column(db.DateTime, nullable=False, default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    mechanic_id = db.Column(db.Integer, db.ForeignKey('mechanic.id'), nullable=True)
+    driver_id = db.Column(db.Integer, db.ForeignKey('driver.id'), nullable=True)
 
     def __repr__(self):
         return f"Feedback('{self.name}', '{self.email}', '{self.rating}', '{self.date_submitted}')"
+
 
 class Mechanic(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -47,17 +54,18 @@ class Mechanic(db.Model):
     service_rates = db.Column(db.Float, nullable=False)
     availability = db.Column(db.Boolean, default=True)
     registered_on = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    feedbacks = db.relationship('Feedback', backref='mechanic', lazy=True)
+    feedbacks = db.relationship('Feedback', backref='mechanic', lazy=True, foreign_keys='Feedback.mechanic_id')
 
     def __repr__(self):
         return f"Mechanic('{self.user_id}', '{self.expertise}')"
+
 
 class Driver(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     vehicle_details = db.Column(db.String(200), nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False, default=datetime.now)
-    feedbacks = db.relationship('Feedback', backref='driver', lazy=True)
+    feedbacks = db.relationship('Feedback', backref='driver', lazy=True, foreign_keys='Feedback.driver_id')
 
     def __repr__(self):
         return f"Driver('{self.user_id}', '{self.vehicle_details}')"

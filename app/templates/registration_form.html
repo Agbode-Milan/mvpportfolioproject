@@ -186,54 +186,68 @@
         </div>
     </div>
     <!-- Nav Bar End -->
-
-    <!-- Form Start -->
-    <div class="service">
-        <div class="container">
-            <div class="section-header text-center">
-                <p>Join Us</p>
-                <h2>Registration Form</h2>
-            </div>
-            <div class="row justify-content-center mt-4">
-                <div class="col-lg-8 col-md-10 col-sm-12">
-                    <div class="registration-form p-4" style="border: 2px solid #000000; border-radius: 10px;">
-                        <h3 class="text-center mb-4">Sign Up</h3>
-                        <form>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Username" required="required" />
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="Surname" required="required" />
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" class="form-control" placeholder="First Name" required="required" />
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="email" class="form-control" placeholder="Email" required="required" />
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="tel" class="form-control" placeholder="Phone" required="required" />
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="password" class="form-control" placeholder="Password"
-                                    required="required" />
-                            </div>
-                            <div class="form-group mb-4">
-                                <input type="password" class="form-control" placeholder="Confirm Password"
-                                    required="required" />
-                            </div>
-                            <div class="text-center">
-                                <button class="btn btn-custom" type="submit">Sign Up</button>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- End Contact Form -->
-            </div>
+<!-- Form Start -->
+<div class="service">
+    <div class="container">
+        <div class="section-header text-center">
+            <p>Join Us</p>
+            <h2>Registration Form</h2>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8 col-md-10 col-sm-12">
+                <div class="registration-form p-4" style="border: 2px solid #000000; border-radius: 10px;">
+                    <h3 class="text-center mb-4">Sign Up</h3>
+                    <form method="POST" action="{{ url_for('main.register') }}">
+                        {{ form.csrf_token }}
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" placeholder="Username" required="required" name="username" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" placeholder="Surname" required="required" name="surname" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" placeholder="First Name" required="required" name="first_name" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="email" class="form-control" placeholder="Email" required="required" name="email" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="tel" class="form-control" placeholder="Phone" required="required" name="phone" />
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="password" class="form-control" placeholder="Password" required="required" name="password" />
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="password" class="form-control" placeholder="Confirm Password" required="required" name="confirm_password" />
+                        </div>
+                        <!-- Role selection -->
+                        <div class="form-group">
+                            {{ form.role.label(class="form-control-label") }}
+                            {{ form.role(class="form-control", id="role-select") }}
+                        </div>
+                        <!-- Driver fields -->
+                        <div class="form-group" id="driver-fields" style="display: none;">
+                            {{ form.vehicle_details.label(class="form-control-label") }}
+                            {{ form.vehicle_details(class="form-control") }}
+                        </div>
+                        <!-- Mechanic fields -->
+                        <div class="form-group" id="mechanic-fields" style="display: none;">
+                            {{ form.location.label(class="form-control-label") }}
+                            {{ form.location(class="form-control") }}
+                            {{ form.expertise.label(class="form-control-label") }}
+                            {{ form.expertise(class="form-control") }}
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-custom" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- End Contact Form -->
         </div>
     </div>
-    <!-- Form End -->
-
-
+</div>
+<!-- Form End -->
+<!-- Form End -->
     <!-- Footer Start -->
     <div class="footer">
         <div class="container">
@@ -279,6 +293,38 @@
         <div class="loader"></div>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+    
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+    
+                const username = form.querySelector('[name="username"]').value;
+                const surname = form.querySelector('[name="surname"]').value;
+                const firstName = form.querySelector('[name="first_name"]').value;
+                const email = form.querySelector('[name="email"]').value;
+                const phone = form.querySelector('[name="phone"]').value;
+                const password = form.querySelector('[name="password"]').value;
+                const confirmPassword = form.querySelector('[name="confirm_password"]').value;
+    
+                // Example validation, you can customize this as needed
+                if (!username || !surname || !firstName || !email || !phone || !password || !confirmPassword) {
+                    alert('Please fill out all fields.');
+                    return;
+                }
+    
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match. Please try again.');
+                    return;
+                }
+    
+                // If all validations pass, submit the form
+                form.submit();
+            });
+        });
+    </script>
+    
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

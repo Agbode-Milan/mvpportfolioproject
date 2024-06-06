@@ -6,8 +6,8 @@ from flask_wtf import FlaskForm
 from wtforms.validators import (
         DataRequired, Length, Email, EqualTo, Regexp
         )
-from wtforms import SubmitField, StringField, PasswordField, BooleanField, TextAreaField, IntegerField
-from wtforms.validators import NumberRange
+from wtforms import SubmitField, StringField, PasswordField, BooleanField, TextAreaField, IntegerField, SelectField, FloatField
+from wtforms.validators import NumberRange, InputRequired
 
 
 class RegistrationForm(FlaskForm):
@@ -27,6 +27,11 @@ class RegistrationForm(FlaskForm):
     confirm_password = PasswordField(
             "Confirm Password",
             validators=[DataRequired(), EqualTo("password")])
+    role = SelectField("Role", choices=[('driver', 'Driver'), ('mechanic', 'Mechanic')], validators=[DataRequired()])
+    vehicle_details = StringField("Vehicle Details")  #for drivers
+    location = StringField("Location")  # for mechanics
+    expertise = StringField("Expertise")  #for mechanics
+    service_rates = FloatField("Service Rates")  #for mechanics
     submit = SubmitField("Sign Up")
 
 
