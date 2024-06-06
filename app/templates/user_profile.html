@@ -3,28 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Momech Website</title>
+    <title>Momech Auto Services - User Profile</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content=" Website " name="keywords">
-    <meta content=" Website " name="description">
-
-    <!-- Favicon -->
-    <link href="/app/static/img/favicon.ico" rel="icon">
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
-
+    <meta content="Free Website Template" name="keywords">
+    <meta content="Free Website Template" name="description">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <!-- CSS Libraries -->
-
-    <link href="/static/lib/flaticon/font/flaticon.css" rel="stylesheet">
-    <link href="/static/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Stylesheet -->
-    <link href="static/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -34,9 +19,8 @@
             <div class="row align-items-center">
                 <div class="col-lg-4 col-md-12">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{ url_for('main.home') }}">
                             <h1>Momech<span>Auto</span></h1>
-
                         </a>
                     </div>
                 </div>
@@ -90,18 +74,15 @@
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto">
-                        <a href="index.html" class="nav-item nav-link active"><b>Home</b></a>
-                        <a href="about.html" class="nav-item nav-link"><b>About</b></a>
-                        <a href="service.html" class="nav-item nav-link"><strong>Service</strong></a>
-
-                        <a href="location.html" class="nav-item nav-link"><strong>Service Points</strong></a>
-                        <a href="contact.html" class="nav-item nav-link"><strong>Contact</strong></a>
-                        <a href="login_form.html" class="nav-item nav-link"><strong>Login</strong></a>
-                        <a href="registration_form.html" class="nav-item nav-link"><strong>Create an
-                                Account</strong></a>
+                        <a href="{{ url_for('main.home') }}" class="nav-item nav-link"><strong>Home</strong></a>
+                        <a href="{{ url_for('main.about') }}" class="nav-item nav-link active"><strong>About</strong></a>
+                        <a href="{{ url_for('main.service') }}" class="nav-item nav-link"><strong>Service</strong></a>
+                        <a href="{{ url_for('main.location') }}" class="nav-item nav-link"><strong>Service Points</strong></a>
+                        <a href="{{ url_for('main.contact') }}" class="nav-item nav-link"><strong>Contact</strong></a>
+                        <a href="{{ url_for('main.login') }}" class="nav-item nav-link"><strong>Login</strong></a>
+                        <a href="{{ url_for('main.register') }}" class="nav-item nav-link"><strong>Create an Account</strong></a>
                     </div>
                 </div>
             </nav>
@@ -109,93 +90,174 @@
     </div>
     <!-- Nav Bar End -->
 
-    <!-- Profile Section Start -->
-    <div class="container">
-        <div class="profile-info">
-            <div class="d-flex">
-                <img src="user-avatar.jpg" alt="User Avatar" width="150" height="150">
-                <div>
-                    <h2>John Doe</h2>
-                    <p><strong>Username:</strong> johndoe</p>
-                    <p><strong>Email:</strong> johndoe@example.com</p>
-                    <p><strong>Phone:</strong> (555) 555-5555</p>
+    <!-- User Profile Section Start -->
+    <div style="padding: 50px; background-color: #f8f9fa;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h2 style="font-weight: 700;">Mechanic Profiles</h2>
+            </div>
+            <div class="row">
+                <!-- Mechanic 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+                        <img src="img\carousel-2.jpg" alt="Mechanic" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+                        <h4 style="font-weight: 600; margin-bottom: 10px;">John Doe</h4>
+                        <p style="color: #777; margin-bottom: 5px;"><i class="fa fa-map-marker-alt"></i> Accra, Ghana</p>
+                        <p style="color: #777;"><i class="fa fa-cogs"></i> Engine Specialist</p>
+                        <p style="color: #777;"><i class="fa fa-phone"></i> +233-509-914-728</p> </div>
+                    </div>
+                </div>
+                <!-- Mechanic 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+                        <img src="img\carousel-2.jpg" alt="Mechanic" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+                        <h4 style="font-weight: 600; margin-bottom: 10px;">Jane Smith</h4>
+                        <p style="color: #777; margin-bottom: 5px;"><i class="fa fa-map-marker-alt"></i> Kumasi, Ghana</p>
+                        <p style="color: #777;"><i class="fa fa-cogs"></i> Transmission Specialist</p>
+                        <p style="color: #777;"><i class="fa fa-phone"></i> +233-509-914-728</p> </div>
+                    </div>
+                </div>
+                <!-- Mechanic 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+                        <img src="img\carousel-2.jpg" alt="Mechanic" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+                        <h4 style="font-weight: 600; margin-bottom: 10px;">Michael Brown</h4>
+                        <p style="color: #777; margin-bottom: 5px;"><i class="fa fa-map-marker-alt"></i> Takoradi, Ghana</p>
+                        <p style="color: #777;"><i class="fa fa-cogs"></i> Electrical Specialist</p>
+                        <p style="color: #777;"><i class="fa fa-phone"></i> +233-509-914-728</p> </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+                        <img src="img\carousel-2.jpg" alt="Mechanic" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+                        <h4 style="font-weight: 600; margin-bottom: 10px;">Michael Brown</h4>
+                        <p style="color: #777; margin-bottom: 5px;"><i class="fa fa-map-marker-alt"></i> Takoradi, Ghana</p>
+                        <p style="color: #777;"><i class="fa fa-cogs"></i> Electrical Specialist</p>
+                        <p style="color: #777;"><i class="fa fa-phone"></i> +233-509-914-728</p> </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+                        <img src="img\carousel-2.jpg" alt="Mechanic" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+                        <h4 style="font-weight: 600; margin-bottom: 10px;">Michael Brown</h4>
+                        <p style="color: #777; margin-bottom: 5px;"><i class="fa fa-map-marker-alt"></i> Takoradi, Ghana</p>
+                        <p style="color: #777;"><i class="fa fa-cogs"></i> Electrical Specialist</p>
+                        <p style="color: #777;"><i class="fa fa-phone"></i> +233-509-914-728</p> </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+                        <img src="img\carousel-2.jpg" alt="Mechanic" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+                        <h4 style="font-weight: 600; margin-bottom: 10px;">Michael Brown</h4>
+                        <p style="color: #777; margin-bottom: 5px;"><i class="fa fa-map-marker-alt"></i> Takoradi, Ghana</p>
+                        <p style="color: #777;"><i class="fa fa-cogs"></i> Electrical Specialist</p>
+                        <p style="color: #777;"><i class="fa fa-phone"></i> +233-509-914-728</p> </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+                        <img src="img\carousel-2.jpg" alt="Mechanic" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+                        <h4 style="font-weight: 600; margin-bottom: 10px;">Michael Brown</h4>
+                        <p style="color: #777; margin-bottom: 5px;"><i class="fa fa-map-marker-alt"></i> Takoradi, Ghana</p>
+                        <p style="color: #777;"><i class="fa fa-cogs"></i> Electrical Specialist</p>
+                        <p style="color: #777;"><i class="fa fa-phone"></i> +233-509-914-728</p> </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+                        <img src="img\carousel-2.jpg" alt="Mechanic" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+                        <h4 style="font-weight: 600; margin-bottom: 10px;">Michael Brown</h4>
+                        <p style="color: #777; margin-bottom: 5px;"><i class="fa fa-map-marker-alt"></i> Takoradi, Ghana</p>
+                        <p style="color: #777;"><i class="fa fa-cogs"></i> Electrical Specialist</p>
+                        <p style="color: #777;"><i class="fa fa-phone"></i> +233-509-914-728</p> </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+                        <img src="img\carousel-2.jpg" alt="Mechanic" style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+                        <h4 style="font-weight: 600; margin-bottom: 10px;">Michael Brown</h4>
+                        <p style="color: #777; margin-bottom: 5px;"><i class="fa fa-map-marker-alt"></i> Takoradi, Ghana</p>
+                        <p style="color: #777;"><i class="fa fa-cogs"></i> Electrical Specialist</p>
+                        <p style="color: #777;"><i class="fa fa-phone"></i> +233-509-914-728</p> </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="mechanics-list">
-            <h3>Nearest Mechanics</h3>
-            <ul>
-                <li>Mechanic 1 - 123 Main St, City, State</li>
-                <li>Mechanic 2 - 456 Elm St, City, State</li>
-                <li>Mechanic 3 - 789 Oak St, City, State</li>
-            </ul>
-        </div>
     </div>
-    <!-- Profile Section End -->
+    <!-- User Profile Section End -->
 
-                <!-- Footer Start -->
-                <div class="footer">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6">
-                                <div class="footer-contact">
-                                    <h2>Get In Touch</h2>
-                                    <p><i class="fa fa-map-marker-alt"></i>Accra, Ghana</p>
-                                    <p><i class="fa fa-phone-alt"></i>+233 509 914 728</p>
-                                    <p><i class="fa fa-envelope"></i>momechautoservices@gmail.com</p>
-                                    <div class="footer-social">
-                                        <a class="btn" href=""><i class="fab fa-twitter"></i></a>
-                                        <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="footer-link">
-                                    <h2>Links</h2>
-                                    <a href="about.html">About Us</a>
-                                    <a href="contact.html">Contact Us</a>
-                                    <a href="Service.html">Our Service</a>
-                                    <a href="location.html">Service Points</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-    
-                            </div>
-                            <div class="col-lg-3 col-md-6">
-    
-                            </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Footer Start -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-contact">
+                        <h2>Get In Touch</h2>
+                        <p><i class="fa fa-map-marker-alt"></i>Accra, Ghana</p>
+                        <p><i class="fa fa-phone-alt"></i>+233 509 914 728</p>
+                        <p><i class="fa fa-envelope"></i>momechautoservices@gmail.com</p>
+                        <div class="footer-social">
+                            <a class="btn" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
                         </div>
                     </div>
                 </div>
-    
-                <!-- Footer End -->
-    
-                <!-- Back to top button -->
-                <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-    
-                <!-- Pre Loader -->
-                <div id="loader" class="show">
-                    <div class="loader"></div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-link">
+                        <h2>Links</h2>
+                        <a href="{{ url_for('main.about') }}">About Us</a>
+                        <a href="{{ url_for('main.contact') }}">Contact Us</a>
+                        <a href="{{ url_for('main.service') }}">Our Service</a>
+                        <a href="{{ url_for('main.location') }}">Service Points</a>
+                    </div>
                 </div>
-    
-                <!-- JavaScript Libraries -->
-                <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-                <script src="/static/lib/easing/easing.min.js"></script>
-                <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
-                <script src="/static/lib/waypoints/waypoints.min.js"></script>
-                <script src="/static/lib/counterup/counterup.min.js"></script>
-    
-                <!-- Contact Javascript File -->
-                <script src="mail/jqBootstrapValidation.min.js"></script>
-                <script src="mail/contact.js"></script>
-    
-                <!-- Javascript -->
-                <script src="/static/js/main.js"></script>
-    
-    </body>
-    
-    </html>
+                <div class="col-lg-3 col-md-6">
 
-    
+                </div>
+                <div class="col-lg-3 col-md-6">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer End -->
+
+    <!-- Back to top button -->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Pre Loader -->
+    <div id="loader" class="show">
+        <div class="loader"></div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/lib/easing/easing.min.js"></script>
+    <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/static/lib/waypoints/waypoints.min.js"></script>
+    <script src="/static/lib/counterup/counterup.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="/mail/jqBootstrapValidation.min.js"></script>
+    <script src="/mail/contact.js"></script>
+
+    <!-- Javascript -->
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
+</body>
+
+</html>
