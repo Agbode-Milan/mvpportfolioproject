@@ -58,8 +58,9 @@ def send_email(reciever_mail):
 @main.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        print("User is already authenticated, redirecting to home page")
-        return redirect(url_for('main.home'))
+        print("User is already authenticated, logging out current user")
+        logout_user()
+        #return redirect(url_for('main.home'))
 
     form = RegistrationForm()
     if form.validate_on_submit():
@@ -111,7 +112,7 @@ def login():
 @main.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.login'))
 
 @main.route('/feedback', methods=['GET', 'POST'])
 @login_required
@@ -181,3 +182,4 @@ def account():
         #service_requests=service_requests,
         feedbacks=feedbacks
     )
+
