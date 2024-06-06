@@ -9,7 +9,7 @@
     <meta content="Website" name="description">
 
     <!-- Favicon -->
-    <link href="{{ url_for('static', filename='img/favicon.ico') }}" rel="icon">
+    <link href="app/static/img/favicon.ico" rel="icon">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -17,14 +17,14 @@
     <!-- CSS Libraries -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='lib/flaticon/font/flaticon.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='lib/animate/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ url_for('static', filename='lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="/static/lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="static/static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Stylesheet -->
     <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    
+
     <style>
         .form-group {
             margin-bottom: 20px;
@@ -193,43 +193,39 @@
                     <div class="registration-form p-4" style="border: 2px solid #000000; border-radius: 10px;">
                         <h3 class="text-center mb-4">Sign Up</h3>
                         <form method="POST" action="{{ url_for('main.register') }}">
-                            {{ form.hidden_tag() }}
-                            <div class="form-group">
-                                {{ form.username.label(class="form-control-label") }}
-                                {{ form.username(class="form-control") }}
+                            {{ form.csrf_token }}
+                            <div class="form-group mb-3">
+                                <input type="text" class="form-control" placeholder="Username" required="required" name="username" />
                             </div>
-                            <div class="form-group">
-                                {{ form.surname.label(class="form-control-label") }}
-                                {{ form.surname(class="form-control") }}
+                            <div class="form-group mb-3">
+                                <input type="text" class="form-control" placeholder="Surname" required="required" name="surname" />
                             </div>
-                            <div class="form-group">
-                                {{ form.first_name.label(class="form-control-label") }}
-                                {{ form.first_name(class="form-control") }}
+                            <div class="form-group mb-3">
+                                <input type="text" class="form-control" placeholder="First Name" required="required" name="first_name" />
                             </div>
-                            <div class="form-group">
-                                {{ form.email.label(class="form-control-label") }}
-                                {{ form.email(class="form-control") }}
+                            <div class="form-group mb-3">
+                                <input type="email" class="form-control" placeholder="Email" required="required" name="email" />
                             </div>
-                            <div class="form-group">
-                                {{ form.phone.label(class="form-control-label") }}
-                                {{ form.phone(class="form-control") }}
+                            <div class="form-group mb-3">
+                                <input type="tel" class="form-control" placeholder="Phone" required="required" name="phone" />
                             </div>
-                            <div class="form-group">
-                                {{ form.password.label(class="form-control-label") }}
-                                {{ form.password(class="form-control") }}
+                            <div class="form-group mb-3">
+                                <input type="password" class="form-control" placeholder="Password" required="required" name="password" />
                             </div>
-                            <div class="form-group">
-                                {{ form.confirm_password.label(class="form-control-label") }}
-                                {{ form.confirm_password(class="form-control") }}
+                            <div class="form-group mb-4">
+                                <input type="password" class="form-control" placeholder="Confirm Password" required="required" name="confirm_password" />
                             </div>
+                            <!-- Role selection -->
                             <div class="form-group">
                                 {{ form.role.label(class="form-control-label") }}
                                 {{ form.role(class="form-control", id="role-select") }}
                             </div>
+                            <!-- Driver fields -->
                             <div class="form-group" id="driver-fields" style="display: none;">
                                 {{ form.vehicle_details.label(class="form-control-label") }}
                                 {{ form.vehicle_details(class="form-control") }}
                             </div>
+                            <!-- Mechanic fields -->
                             <div class="form-group" id="mechanic-fields" style="display: none;">
                                 {{ form.location.label(class="form-control-label") }}
                                 {{ form.location(class="form-control") }}
@@ -272,10 +268,8 @@
                         <a href="{{ url_for('main.location') }}">Service Points</a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                </div>
-                <div class="col-lg-3 col-md-6">
-                </div>
+                <div class="col-lg-3 col-md-6"></div>
+                <div class="col-lg-3 col-md-6"></div>
             </div>
         </div>
     </div>
@@ -292,32 +286,36 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='lib/easing/easing.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='lib/waypoints/waypoints.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='lib/counterup/counterup.min.js') }}"></script>
+    <script src="/static/lib/easing/easing.min.js"></script>
+    <script src="/static/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/static/lib/waypoints/waypoints.min.js"></script>
+    <script src="/static/lib/counterup/counterup.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="{{ url_for('static', filename='mail/jqBootstrapValidation.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='mail/contact.js') }}"></script>
+    <script src="/mail/jqBootstrapValidation.min.js"></script>
+    <script src="/mail/contact.js"></script>
 
     <!-- Javascript -->
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="/static/js/main.js"></script>
+
     <script>
-        document.getElementById('role-select').addEventListener('change', function () {
-            var role = this.value;
-            var driverFields = document.getElementById('driver-fields');
-            var mechanicFields = document.getElementById('mechanic-fields');
-            if (role === 'driver') {
-                driverFields.style.display = 'block';
-                mechanicFields.style.display = 'none';
-            } else if (role === 'mechanic') {
-                driverFields.style.display = 'none';
-                mechanicFields.style.display = 'block';
-            } else {
-                driverFields.style.display = 'none';
-                mechanicFields.style.display = 'none';
-            }
+        document.addEventListener('DOMContentLoaded', function () {
+            const roleSelect = document.getElementById('role-select');
+            const driverFields = document.getElementById('driver-fields');
+            const mechanicFields = document.getElementById('mechanic-fields');
+            
+            roleSelect.addEventListener('change', function () {
+                if (roleSelect.value === 'driver') {
+                    driverFields.style.display = 'block';
+                    mechanicFields.style.display = 'none';
+                } else if (roleSelect.value === 'mechanic') {
+                    driverFields.style.display = 'none';
+                    mechanicFields.style.display = 'block';
+                } else {
+                    driverFields.style.display = 'none';
+                    mechanicFields.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
