@@ -15,6 +15,46 @@ main = Blueprint('main', __name__)
 def home():
     return render_template('index.html')
 
+
+
+def send_email(reciever_mail):
+    """Script that enables sending of email"""
+    port = 465  # For SSL
+    smtp_server = "smtp.gmail.com"
+    sender_email = "testgheebee@gmail.com"  # Enter your address
+    receiver_email = "sobowalegz2@gmail.com"  # Enter receiver address
+    #password = getpass.getpass("Type your password and press enter: ")
+    password = "vudj vaqu wbfn biaw"  #this is the passoword i used to test the code. it can be replaced with the company credentials.
+    subject = "Welcome to Momech Auto Services"
+
+      # HTML content of the email
+    html_content = """
+    <html>
+    <body>
+        <h1>Welcome to Momech Auto Services!</h1>
+        <p>Thanks for registering with Momech.</p>
+        <p>If you encounter issues, feel free to reach out to us.</p>
+    </body>
+    </html>
+    """
+
+    message = f"""\
+    Subject: {subject}
+    MIME-Version: 1.0
+    Content-Type: text/html
+    {html_content}
+    """
+   
+    context = ssl.create_default_context()
+    try:
+        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message)
+        print("Email sent successfully!")
+
+    except Exception as e:
+        print(f"Failed to send mail: {e}")
+    
 @main.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -29,50 +69,18 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        send_email(user.email)  # Assuming this function works correctly
+        send_email(user.email) 
 
         flash('Your account has been created! You can Login Now', 'success')
         print("Flash message displayed")
         return redirect(url_for('main.login'))
     else:
         print("Form not submitted or not valid")
-        print("Form data:", form.data)  # Print form data for debugging
-        print(form.errors)  # Print form validation errors for debugging
+        print("Form data:", form.data)
+        print(form.errors) 
 
     print("Rendering registration form")
     return render_template('registration_form.html', title='Register', form=form)
-
-
-def send_email(reciever_mail):
-    """Script that enables sending of email"""
-    port = 465  # For SSL
-    smtp_server = "smtp.gmail.com"
-    sender_email = "testgheebee@gmail.com"  # Enter your address
-    receiver_email = "sobowalegz2@gmail.com"  # Enter receiver address
-    #password = getpass.getpass("Type your password and press enter: ")
-    password = "vudj vaqu wbfn biaw"  #this is the passoword i used to test the code. it can be replaced with the company credentials.
-    subject = "Welcome to Momech Auto Services"
-    body = "Thanks for registering with Momech \n If you encounter issue, reach out to us."
-
-    message = f"""\
-    Subject: {subject}
-
-    {body}
-    """
-
-    context = ssl.create_default_context()
-    try:
-        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
-            server.login(sender_email, password)
-            server.sendmail(sender_email, receiver_email, message)
-        print("Email sent successfully!")
-
-    except Exception as e:
-        print(f"Failed to send mail: {e}")
-        
-
-
-
 
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -146,7 +154,6 @@ def location():
 @main.route('/contact')
 def contact():
     return render_template('contact.html')
-#function that enables user to send recieve email notification.
 
 @main.route('/account')
 @login_required
