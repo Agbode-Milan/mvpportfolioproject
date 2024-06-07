@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Momech Auto Services - Login</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free Website Template" name="keywords">
+    <meta content="Free Website Template" name="description">
+    <link href="/static/img/favicon.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="/static/lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="/static/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/static/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</head>
+
+<body>
+    <!-- Top Bar Start -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 col-md-12">
+                    <div class="logo">
+                        <a href="{{ url_for('main.home') }}">
+                            <h1>Momech<span>Auto</span></h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 d-none d-lg-block">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="far fa-clock"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Opening Hours</h3>
+                                    <p>Mon - Fri, 8:00 - 9:00</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="fa fa-phone-alt"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Call Us</h3>
+                                    <p>+233 509 914 728</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="top-bar-item">
+                                <div class="top-bar-icon">
+                                    <i class="far fa-envelope"></i>
+                                </div>
+                                <div class="top-bar-text">
+                                    <h3>Email Us</h3>
+                                    <p>momechautoservices@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Top Bar End -->
+
+    <!-- Nav Bar Start -->
+    <div class="nav-bar">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+                <a href="#" class="navbar-brand">MENU</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav mr-auto">
+                        <a href="{{ url_for('main.home') }}" class="nav-item nav-link"><strong>Home</strong></a>
+                        <a href="{{ url_for('main.about') }}"
+                            class="nav-item nav-link active"><strong>About</strong></a>
+                        <a href="{{ url_for('main.service') }}" class="nav-item nav-link"><strong>Service</strong></a>
+                        <a href="{{ url_for('main.location') }}" class="nav-item nav-link"><strong>Service
+                                Points</strong></a>
+                        <a href="{{ url_for('main.contact') }}" class="nav-item nav-link"><strong>Contact</strong></a>
+                        <a href="{{ url_for('main.login') }}" class="nav-item nav-link"><strong>Login</strong></a>
+                        <a href="{{ url_for('main.register') }}" class="nav-item nav-link"><strong>Create an
+                                Account</strong></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Nav Bar End -->
+
+    <section class="mechanic-profiles" id="mechanics">
+        <h2>Our Talented Mechanics</h2>
+        <p>Meet our team of skilled and experienced mechanics who are dedicated to providing exceptional service to your vehicle.</p>
+      
+        <div class="mechanic-list">
+          <article class="mechanic-item">
+            <figure class="mechanic-img">
+              <img src="img\carousel-3.jpg" alt="Mechanic 1">
+            </figure>
+            <div class="mechanic-info">
+              <h3>John Doe</h3>
+              <p><strong>Location:</strong> Kpone Katamanso</p>
+              <p><strong>Specialization:</strong> Engine Repair, Diagnostics</p>
+              <p><strong>Phone number:</strong> +233-968-534-534</p>
+            </div>
+          </article>
+      
+          <article class="mechanic-item">
+            <figure class="mechanic-img">
+              <img src="img\carousel-3.jpg" alt="Mechanic 2">
+            </figure>
+            <div class="mechanic-info">
+              <h3>Jane Smith</h3>
+              <p><strong>Location:</strong> Ashaiman</p>
+              <p><strong>Specialization:</strong> Brakes, Electrical Systems</p>
+              <p><strong>Phone number:</strong> +233-968-534-534</p>
+            </div>
+          </article>
+
+          <article class="mechanic-item">
+            <figure class="mechanic-img">
+              <img src="img\carousel-3.jpg" alt="Mechanic 2">
+            </figure>
+            <div class="mechanic-info">
+              <h3>Jane Smith</h3>
+              <p><strong>Location:</strong> Ashaiman</p>
+              <p><strong>Specialization:</strong> Brakes, Electrical Systems</p>
+              <p><strong>Phone number:</strong> +233-968-534-534</p>
+            </div>
+          </article>
+
+          <article class="mechanic-item">
+            <figure class="mechanic-img">
+              <img src="img\carousel-3.jpg" alt="Mechanic 2">
+            </figure>
+            <div class="mechanic-info">
+              <h3>Jane Smith</h3>
+              <p><strong>Location:</strong> Ashaiman</p>
+              <p><strong>Specialization:</strong> Brakes, Electrical Systems</p>
+              <p><strong>Phone number:</strong> +233-968-534-534</p>
+            </div>
+          </article>
+
+          <article class="mechanic-item">
+            <figure class="mechanic-img">
+              <img src="img\carousel-3.jpg" alt="Mechanic 2">
+            </figure>
+            <div class="mechanic-info">
+              <h3>Jane Smith</h3>
+              <p><strong>Location:</strong> Ashaiman</p>
+              <p><strong>Specialization:</strong> Brakes, Electrical Systems</p>
+              <p><strong>Phone number:</strong> +233-968-534-534</p>
+            </div>
+          </article>
+
+          <article class="mechanic-item">
+            <figure class="mechanic-img">
+              <img src="img\carousel-3.jpg" alt="Mechanic 2">
+            </figure>
+            <div class="mechanic-info">
+              <h3>Jane Smith</h3>
+              <p><strong>Location:</strong> Ashaiman</p>
+              <p><strong>Specialization:</strong> Brakes, Electrical Systems</p>
+              <p><strong>Phone number:</strong> +233-968-534-534</p>
+            </div>
+          </article>
+      
+          </div>
+      </section>
+      
+      <style>
+        /* Styles for the mechanic profiles section */
+        .mechanic-profiles {
+          margin-top: 50px;
+          padding: 20px;
+          text-align: center;
+        }
+      
+        .mechanic-profiles h2 {
+          font-size: 2rem;
+          margin-bottom: 20px;
+        }
+      
+        .mechanic-profiles p {
+          font-size: 16px;
+          line-height: 1.5;
+          margin-bottom: 30px;
+        }
+      
+        .mechanic-list {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      
+        .mechanic-item {
+          width: calc(33% - 40px); /* Adjust width as needed */
+          margin: 10px;
+          text-align: left;
+        }
+      
+        .mechanic-img {
+          overflow: hidden;
+          border-radius: 50%;
+          margin-bottom: 15px;
+        }
+      
+        .mechanic-img img {
+          width: 75px;
+          height: 75px;
+        }
+      
+        .mechanic-info {
+          padding: 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+        }
+      
+        .mechanic-info h3 {
+          font-size: 18px;
+          margin-bottom: 5px;
+        }
+      
+        .mechanic-info p {
+          font-size: 14px;
+          margin-bottom: 5px;
+        }
+      </style>
+      
+
+      
