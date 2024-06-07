@@ -109,30 +109,29 @@
     </div>
     <!-- Nav Bar End -->
 
-    <!-- Profile Section Start -->
     <div class="container">
         <div class="profile-info">
-            <div class="d-flex">
-                <img src="{{ url_for('static', filename='img/user-avatar.jpg') }}" alt="User Avatar" width="150" height="150">
-                <div>
-                    <h2>{{ current_user.username }}</h2>
-                    <p><strong>Username:</strong> {{ current_user.username }}</p>
-                    <p><strong>Email:</strong> {{ current_user.email }}</p>
-                    <p><strong>Phone:</strong> {{ current_user.phone }}</p>
-                </div>
+          <div class="d-flex">
+            <img src="{{ url_for('static', filename='img/user-avatar.jpg') }}" alt="User Avatar" width="150" height="150">
+            <div>
+              <h2>{{ current_user.username }}</h2>
+              <p><strong>Username:</strong> {{ current_user.username }}</p>
+              <p><strong>Email:</strong> {{ current_user.email }}</p>
+              <p><strong>Phone:</strong> {{ current_user.phone }}</p>
             </div>
+          </div>
         </div>
-
         <div class="mechanics-list">
-            <h3>Nearest Mechanics</h3>
-            <ul>
-                {% for mechanic in mechanics %}
-                <li>{{ mechanic.name }} - {{ mechanic.address }}</li>
-                {% endfor %}
-            </ul>
+          <h3>Nearest Mechanics</h3>
+          <ul>
+            {% for mechanic in mechanics %}
+              <li>{{ mechanic.name }} - {{ mechanic.address }}</li>
+            {% endfor %}
+          </ul>
+          <a href="#" class="btn btn-primary">Find Available Mechanics</a>
         </div>
-    </div>
-    <!-- Profile Section End -->
+      </div>
+      
 
     <!-- Footer Start -->
     <div class="footer">
