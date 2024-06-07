@@ -17,17 +17,20 @@ def home():
 
 
 
-def send_email(reciever_mail):
+import smtplib
+import ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+def send_email(receiver_email):
     """Script that enables sending of email"""
     port = 465  # For SSL
     smtp_server = "smtp.gmail.com"
-    sender_email = "testgheebee@gmail.com"  # Enter your address
-    receiver_email = "sobowalegz2@gmail.com"  # Enter receiver address
-    #password = getpass.getpass("Type your password and press enter: ")
-    password = "vudj vaqu wbfn biaw"  #this is the passoword i used to test the code. it can be replaced with the company credentials.
+    sender_email = "testgheebee@gmail.com"
+    password = "vudj vaqu wbfn biaw"  # Replace with actual password
     subject = "Welcome to Momech Auto Services"
 
-      # HTML content of the email
+    # HTML content of the email
     html_content = """
     <html>
     <body>
@@ -38,23 +41,28 @@ def send_email(reciever_mail):
     </html>
     """
 
-    message = f"""\
-    Subject: {subject}
-    MIME-Version: 1.0
-    Content-Type: text/html
-    {html_content}
-    """
-   
+    # Create a multipart message and set headers
+    message = MIMEMultipart("alternative")
+    message["Subject"] = subject
+    message["From"] = sender_email
+    message["To"] = receiver_email
+
+    # Add HTML content to the message
+    html_part = MIMEText(html_content, "html")
+    message.attach(html_part)
+
     context = ssl.create_default_context()
     try:
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
             server.login(sender_email, password)
-            server.sendmail(sender_email, receiver_email, message)
+            server.sendmail(sender_email, receiver_email, message.as_string())
         print("Email sent successfully!")
-
     except Exception as e:
         print(f"Failed to send mail: {e}")
-    
+
+# Example usage:
+#send_email("example@example.com")  # Replace with actual receiver email address
+
 @main.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
