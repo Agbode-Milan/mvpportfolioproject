@@ -112,22 +112,18 @@
     </div>
     <!-- Nav Bar End -->
 
-    <!-- Profile Section Start -->
     <div class="container">
         <div class="profile-info">
             <div class="d-flex">
-                <img src="{{ url_for('static', filename='img/user-avatar.jpg') }}" alt="User Avatar" width="150"
-                    height="150">
+                <img src="{{ url_for('static', filename='img/user-avatar.jpg') }}" alt="User Avatar" width="150" height="150">
                 <div>
                     <h2>{{ current_user.username }}</h2>
                     <p><strong>Username:</strong> {{ current_user.username }}</p>
                     <p><strong>Email:</strong> {{ current_user.email }}</p>
                     <p><strong>Phone:</strong> {{ current_user.phone }}</p>
-
                 </div>
             </div>
         </div>
-
         <div class="mechanics-list">
             <h3>Request a Service</h3>
             <a href="{{ url_for('main.service_request') }}" class="btn btn-primary mt-3">Find a Mechanic</a>
@@ -137,8 +133,8 @@
                 {% endfor %}
             </ul>
         </div>
-    </div>
-    <!-- Profile Section End -->
+      </div>
+      
 
     <!-- Footer Start -->
     <div class="footer">
